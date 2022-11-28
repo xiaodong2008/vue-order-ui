@@ -36,10 +36,15 @@ export default {
       // get cart
       let cart = this.$store.state.cart;
       let foodList = []
-      for (let i = 0; i < cart.length; i++) {
-
-        foodList.push(food);
-      }
+      cart.forEach((item) => {
+        // for item.count
+        for (let i = 0; i < item.count; i++) {
+          let newItem = JSON.parse(JSON.stringify(item));
+          newItem.count = undefined;
+          newItem.custom = item.custom[i];
+          foodList.push(newItem);
+        }
+      })
     },
   },
 }

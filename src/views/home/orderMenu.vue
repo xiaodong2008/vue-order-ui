@@ -1,4 +1,3 @@
-<script src="../../store/index.js"></script>
 <template>
   <div id="menu">
     <div class="block" v-for="list in $store.state.menu">
