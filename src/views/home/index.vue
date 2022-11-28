@@ -3,15 +3,17 @@
     <Topbar/>
     <div class="fadeTopbar"></div>
     <orderMenu/>
+    <Bottom/>
   </div>
 </template>
 
 <script>
 import Topbar from "./topbar.vue";
 import orderMenu from "./orderMenu.vue";
+import Bottom from "./bottom.vue";
 
 export default {
-  components: {orderMenu, Topbar}
+  components: {Bottom, orderMenu, Topbar}
 }
 </script>
 

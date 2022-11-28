@@ -15,7 +15,7 @@
             </template>
           </a-list-item-meta>
           <a-space>
-            <a-button type="primary" v-if="item.count > 0" @click="item.count--" shape="circle">
+            <a-button type="primary" v-if="item.count > 0" @click="$store.commit('removeFood', [item.id])" shape="circle">
               <template #icon>
                 <MinusOutlined style="font-size: 11px"/>
               </template>
@@ -35,15 +35,23 @@
         <img :src="viewTarget.img" alt="img" class="foodImage">
         <div class="foodInfoText">
           <span class="foodName">{{ viewTarget.name }}</span>
-          <span class="foodInfoTextContent">HKD {{ viewTarget.price }}</span>
+        </div>
+      </div>
+      <div class="custom">
+        <div class="type" v-for="type in viewCustom">
+          <span class="typeTitle">{{ type.name }}</span>
+          <a-button :type="option.checked ? `primary` : undefined" v-for="option in type.items" :key="option.id"
+                    :value="option.id" shape="round" class="typeItem" @click="option.checked = !option.checked">
+            {{ option.name }}
+          </a-button>
         </div>
       </div>
       <template #footer>
         <div class="price" style="float: left">
-          <span class="priceText">HKD {{ viewTarget.price }}</span>
+          <span class="priceText">HKD {{ getPrice() }}</span>
         </div>
         <a-space>
-          <a-button type="primary" v-if="viewTarget.count > 0" @click="viewTarget.count--" shape="circle">
+          <a-button type="primary" v-if="viewTarget.count > 0" @click="$store.commit('removeFood', [viewTarget.id])" shape="circle">
             <template #icon>
               <MinusOutlined style="font-size: 11px"/>
             </template>
@@ -65,16 +73,41 @@ export default {
   data() {
     return {
       view: false,
-      viewTarget: null
+      viewTarget: null,
+      viewCustom: []
     }
   },
   methods: {
-    orderFood(foodid, add) {
-      this.$store.commit("orderFood", foodid);
+    orderFood(foodid) {
+      console.log(this.$store.state.cart);
+      let viewCustom = JSON.parse(JSON.stringify(this.viewCustom));
+      this.$store.commit("orderFood", [foodid, viewCustom]);
+      this.$forceUpdate()
     },
     viewFood(foodid) {
       this.view = true;
       this.viewTarget = this.$store.getters.findFood(foodid);
+      this.viewCustom = this.$store.getters.findType(foodid).superChild;
+      // deep copy
+      this.viewCustom = JSON.parse(JSON.stringify(this.viewCustom));
+      // get all viewCustom[].items
+      this.viewCustom.forEach(type => {
+        type.items.forEach(item => {
+          item.checked = false;
+        })
+      });
+      console.log(this.viewCustom);
+    },
+    getPrice() {
+      let price = this.viewTarget.price;
+      this.viewCustom.forEach(type => {
+        type.items.forEach(item => {
+          if (item.checked) {
+            price += item.price;
+          }
+        })
+      });
+      return price;
     }
   },
   components: {
@@ -128,13 +161,28 @@ export default {
       font-size: 20px;
       font-weight: bold;
     }
+  }
+}
 
-    .foodInfoTextContent {
+.custom {
+  margin-top: 10px;
+
+  .type {
+    margin-bottom: 10px;
+
+    .typeTitle {
+      border-bottom: 1px solid #ccc;
+      color: #ccc;
       font-size: 16px;
-      margin-top: 8px;
-      margin-left: 5px;
-      color: red;
-      font-weight: 600;
+      padding: 4px;
+      display: block;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+
+    .typeItem {
+      margin-right: 8px;
+      margin-bottom: 8px;
     }
   }
 }

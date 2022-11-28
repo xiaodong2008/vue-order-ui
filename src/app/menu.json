@@ -18,6 +18,42 @@
           "img": "https://pic.pimg.tw/dreamycat0421/1442848143-3966685655.jpg",
           "price": 35
         }
+      ],
+      "superChild": [
+        {
+          "name": "口味",
+          "items": [
+            {
+              "name": "走葱",
+              "price": 0
+            },
+            {
+              "name": "多面",
+              "price": 0
+            },
+            {
+              "name": "少面",
+              "price": 0
+            }
+          ]
+        },
+        {
+          "name": "加料",
+            "items": [
+                {
+                "name": "加溏心蛋",
+                "price": 12
+                },
+                {
+                "name": "加豚骨",
+                "price": 14
+                },
+                {
+                "name": "加叉燒",
+                "price": 14
+                }
+            ]
+        }
       ]
     }
   ]

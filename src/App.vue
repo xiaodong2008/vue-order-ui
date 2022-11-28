@@ -1,9 +1,11 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
-      <component :is="Component" />
-    </transition>
-  </router-view>
+  <a-config-provider :autoInsertSpaceInButton="false">
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component"/>
+      </transition>
+    </router-view>
+  </a-config-provider>
 </template>
 
 <script>
