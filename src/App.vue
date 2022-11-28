@@ -1,5 +1,6 @@
 <template>
   <a-config-provider :autoInsertSpaceInButton="false">
+    <Topbar/>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component"/>
@@ -9,8 +10,11 @@
 </template>
 
 <script>
+import Topbar from "./components/topbar.vue";
+
 export default {
-  name: "App"
+  name: "App",
+  components: {Topbar}
 }
 </script>
 

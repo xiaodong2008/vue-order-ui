@@ -39,7 +39,7 @@ export default {
   name: "topbar",
   data() {
     return {
-      config: require("../../app/config.json"),
+      config: require("../app/config.json"),
       drawerVisible: false
     }
   },

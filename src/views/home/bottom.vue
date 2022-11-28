@@ -4,6 +4,11 @@
       <span class="text">總計: </span>
       <span class="price" style="color: red">HKD {{ $store.getters.getTotal }}</span>
     </div>
+    <div class="button">
+      <router-link to="/checkout">
+        <a-button type="primary" shape="round">查看購物車</a-button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -16,14 +21,15 @@ export default {
 <style lang="less" scoped>
 #bottom {
   position: fixed;
+  display: flex;
+  align-items: center;
   bottom: 0;
   width: 100%;
   background-color: var(--theme-color);
   color: var(--theme-color-text);
-  padding: 10px;
+  padding: 20px;
 
   .count {
-    float: left;
     height: 100%;
 
     > span {
@@ -38,6 +44,10 @@ export default {
       font-size: 20px;
       font-weight: bold;
     }
+  }
+
+  .button {
+    margin-left: auto;
   }
 }
 </style>

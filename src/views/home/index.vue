@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-    <Topbar/>
     <div class="fadeTopbar"></div>
     <orderMenu/>
     <Bottom/>
@@ -8,12 +7,11 @@
 </template>
 
 <script>
-import Topbar from "./topbar.vue";
 import orderMenu from "./orderMenu.vue";
 import Bottom from "./bottom.vue";
 
 export default {
-  components: {Bottom, orderMenu, Topbar}
+  components: {Bottom, orderMenu}
 }
 </script>
 
