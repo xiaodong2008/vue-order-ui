@@ -1,0 +1,24 @@
+{
+  "menu": [
+    {
+      "name": "拉麵",
+      "items": [
+        {
+          "name": "日式濃厚叉燒拉麵",
+          "img": "https://www.xbyolive.com/wp-content/uploads/2020/11/%E7%8E%89%E7%B1%B3%E9%B8%A1%E8%82%89%E6%8B%89%E9%9D%A2-.jpg",
+          "price": 38
+        },
+        {
+          "name": "日式经典豚骨拉麵",
+          "img": "https://content.fun-japan.jp/renewal-prod/cms/articles/content/shutterstock389519893jpg_2021-12-28-12-03-35.jpg",
+          "price": 38
+        },
+        {
+          "name": "日式浓厚味增拉麵",
+          "img": "https://pic.pimg.tw/dreamycat0421/1442848143-3966685655.jpg",
+          "price": 35
+        }
+      ]
+    }
+  ]
+}

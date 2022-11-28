@@ -1,5 +1,5 @@
 {
-  "name": "vue-order",
+  "name": "vue-order-ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,6 +8,7 @@
     "build": "fastjs build"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.15",
     "fastjs-cli": "^2.2.1",
     "fastjs-next": "^1.0.14",
