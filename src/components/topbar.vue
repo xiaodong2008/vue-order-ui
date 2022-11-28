@@ -21,8 +21,12 @@
           </a-sub-menu>
         </a-menu>
       </a-drawer>
-      <img class="logo" :src="config.shop.icon" alt="Logo" v-if="config.shop.icon">
-      <span class="logo" v-else>{{ config.shop.name }}</span>
+      <router-link to="/">
+        <a class="logo">
+          <img class="logo" :src="config.shop.icon" alt="Logo" v-if="config.shop.icon">
+          <span class="logo" v-else>{{ config.shop.name }}</span>
+        </a>
+      </router-link>
     </div>
     <div class="right">
       <a-badge :count="$store.getters.foodCount">
@@ -85,6 +89,7 @@ export default {
       font-weight: bold;
       user-select: none;
       margin-bottom: 4px;
+      color: var(--theme-color-text);
     }
 
     .icon {

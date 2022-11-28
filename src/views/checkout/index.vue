@@ -1,10 +1,15 @@
 <template>
-
+  <div id="checkout">
+    <OrderList/>
+  </div>
 </template>
 
 <script>
+import OrderList from "./orderList.vue";
+
 export default {
-  name: "index"
+  name: "index",
+  components: {OrderList}
 }
 </script>
 

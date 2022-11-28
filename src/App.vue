@@ -1,6 +1,7 @@
 <template>
   <a-config-provider :autoInsertSpaceInButton="false">
     <Topbar/>
+    <div class="fadeTopbar"></div>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component"/>
@@ -27,5 +28,9 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.fadeTopbar {
+  height: 50px;
 }
 </style>
