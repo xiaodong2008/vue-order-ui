@@ -93,6 +93,7 @@ export default {
     viewFood(foodid) {
       this.view = true;
       this.viewTarget = this.$store.getters.findFood(foodid);
+      this.viewTarget = JSON.parse(JSON.stringify(this.viewTarget));
       const childList = this.$store.getters.findType(foodid).superChild || [];
       // get all viewCustom[].items
       this.viewCustom.child?.forEach(type => {
