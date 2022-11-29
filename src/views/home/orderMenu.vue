@@ -23,7 +23,7 @@
             <a-button type="primary" @click="viewFood(item.id)" shape="round">
               {{ item.count > 0 ? item.count : "加入購物車" }}
             </a-button>
-          </a-space>
+           </a-space>
         </a-list-item>
       </a-list>
     </div>
@@ -43,6 +43,9 @@
           <a-button :type="option.checked ? `primary` : undefined" v-for="option in type.items" :key="option.id"
                     :value="option.id" shape="round" class="typeItem" @click="option.checked = !option.checked">
             {{ option.name }}
+            <span class="customPrice">
+            {{ option.price ? `&nbsp;\$${option.price}` : "" }}
+            </span>
           </a-button>
         </div>
       </div>
@@ -183,6 +186,11 @@ export default {
     .typeItem {
       margin-right: 8px;
       margin-bottom: 8px;
+    }
+
+    .customPrice {
+      color: #ccc;
+      font-size: 12px;
     }
   }
 }

@@ -29,9 +29,11 @@
       </router-link>
     </div>
     <div class="right">
-      <a-badge :count="$store.getters.foodCount">
-        <shopping-cart-outlined class="icon"/>
-      </a-badge>
+      <router-link to="/checkout">
+        <a-badge :count="$store.getters.foodCount">
+          <shopping-cart-outlined class="icon"/>
+        </a-badge>
+      </router-link>
     </div>
   </div>
 </template>

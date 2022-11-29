@@ -1,6 +1,9 @@
 import {createStore} from 'vuex'
 import {message} from "ant-design-vue";
 
+// plugin
+import {listenCart} from "./plugin.js";
+
 let menu = require("../app/menu.json").menu
 // give id
 let id = 1
@@ -17,18 +20,28 @@ const store = createStore({
   },
   mutations: {
     orderFood(state, [foodid, custom]) {
+      // custom edit
+      const customList = []
+      custom.forEach(list => {
+        list.items.forEach(item => {
+          if (item.checked) {
+            customList.push(item)
+          }
+        })
+      })
       // found in cart
       let found = state.cart.find((item) => item.id === foodid);
       if (found) {
         found.count++;
-        found.custom.push(custom)
+        found.custom.push(customList)
       } else {
         // not found in cart
         // found menu from getters
         let food = this.getters.findFood(foodid);
-        food.count = 1;
-        food.custom = [custom];
-        state.cart.push(food);
+        let newFood = JSON.parse(JSON.stringify(food));
+        newFood.count = 1;
+        newFood.custom = [customList];
+        state.cart.push(newFood);
       }
       // === 彩蛋，可删除 ===
       if (this.getters.getTotal > 1000) {
@@ -37,7 +50,7 @@ const store = createStore({
           // for 1500-1400 / 100 round up
           for (let i = 0; i < Math.ceil((this.getters.getTotal - 1500) / 100); i++) {
             if (output.length < 20)
-            output += "6"
+              output += "6"
           }
           message.warn(output)
         } else
@@ -54,6 +67,12 @@ const store = createStore({
         else
           found.custom.pop()
       }
+    },
+    setCart(state, cart) {
+      state.cart = cart
+    },
+    cleanCart(state) {
+      state.cart = []
     }
   },
   actions: {},
@@ -78,19 +97,16 @@ const store = createStore({
       let price = 0;
       state.cart.forEach((food) => {
         price += food.price * food.count;
-        food.custom.forEach((item) => {
-          item.forEach((type) => {
-            type.items.forEach((custom) => {
-              if (custom.checked) {
-                price += custom.price;
-              }
-            })
+        food.custom.forEach((customList) => {
+          customList.forEach((custom) => {
+            price += custom.price;
           })
         })
       })
       return price;
     }
-  }
+  },
+  plugins: [listenCart]
 })
 
 export default store

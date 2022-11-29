@@ -12,10 +12,24 @@
 
 <script>
 import Topbar from "./components/topbar.vue";
+import restoreMsg from "./function/restoreMsg.js";
+import {message} from "ant-design-vue";
+const lc = require('./app/config.json').localStorageName
 
 export default {
   name: "App",
-  components: {Topbar}
+  components: {Topbar},
+  mounted() {
+    // check localStorage to see if there is a cart
+    if (localStorage.getItem(`${lc}-cart`)) {
+      if (localStorage.getItem(`${lc}-menu`) !== JSON.stringify(this.$store.state.menu)) {
+        message.warning("菜单已更新，請重新選購");
+      } else {
+        this.$store.commit("setCart", JSON.parse(localStorage.getItem(`${lc}-cart`)));
+        restoreMsg();
+      }
+    }
+  }
 }
 </script>
 

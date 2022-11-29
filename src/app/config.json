@@ -2,5 +2,6 @@
   "shop": {
     "name": "枫叶日本料理",
     "icon": null
-  }
+  },
+  "localStorageName": "vue-order-ui"
 }
