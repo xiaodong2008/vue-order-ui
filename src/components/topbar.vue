@@ -68,6 +68,7 @@ export default {
   height: 50px;
   position: fixed;
   width: 100%;
+  z-index: 10;
 
   .left, .right {
     float: left;

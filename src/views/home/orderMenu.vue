@@ -11,19 +11,20 @@
               <span style="color: red">HKD {{ item.price }}</span>
             </template>
             <template #avatar v-if="item.img">
-              <img :src="item.img" alt="img" class="foodImage">
+              <a-image :src="item.img" alt="img" class="foodImage"/>
             </template>
           </a-list-item-meta>
           <a-space>
-            <a-button type="primary" v-if="item.count > 0" @click="$store.commit('removeFood', [item.id])" shape="circle">
+            <a-button type="primary" v-if="$store.getters.findCart(item.id) > 0" @click="$store.commit('removeFood', [item.id])"
+                      shape="circle">
               <template #icon>
                 <MinusOutlined style="font-size: 11px"/>
               </template>
             </a-button>
             <a-button type="primary" @click="viewFood(item.id)" shape="round">
-              {{ item.count > 0 ? item.count : "加入購物車" }}
+              {{ $store.getters.findCart(item.id) > 0 ? $store.getters.findCart(item.id) : "加入購物車" }}
             </a-button>
-           </a-space>
+          </a-space>
         </a-list-item>
       </a-list>
     </div>
@@ -54,13 +55,15 @@
           <span class="priceText">HKD {{ getPrice() }}</span>
         </div>
         <a-space>
-          <a-button type="primary" v-if="viewTarget.count > 0" @click="$store.commit('removeFood', [viewTarget.id])" shape="circle">
+          <a-button type="primary" v-if="$store.getters.findCart(viewTarget.id) > 0" @click="$store.commit('removeFood', [viewTarget.id])"
+                    shape="circle">
             <template #icon>
               <MinusOutlined style="font-size: 11px"/>
             </template>
           </a-button>
           <a-button type="primary" @click="orderFood(viewTarget.id)" shape="round">
-            {{ viewTarget.count > 0 ? viewTarget.count : "加入購物車" }}
+            {{ $store.getters.findCart(viewTarget.id) > 0 ?
+              $store.getters.findCart(viewTarget.id) : "加入購物車" }}
           </a-button>
         </a-space>
       </template>
@@ -123,6 +126,7 @@ export default {
 #menu {
   margin-top: 10px;
   display: block;
+  margin-bottom: 100px;
 
   .block {
     padding: 0 10px;

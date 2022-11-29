@@ -43,6 +43,7 @@ const store = createStore({
         newFood.custom = [customList];
         state.cart.push(newFood);
       }
+      message.success("已加入購物車")
       // === 彩蛋，可删除 ===
       if (this.getters.getTotal > 1000) {
         if (this.getters.getTotal > 1500) {
@@ -66,7 +67,11 @@ const store = createStore({
           found.custom.splice(key, 1)
         else
           found.custom.pop()
+        if (found.count === 0) {
+          state.cart.splice(state.cart.indexOf(found), 1)
+        }
       }
+      message.success("移除成功")
     },
     setCart(state, cart) {
       state.cart = cart
@@ -81,6 +86,12 @@ const store = createStore({
       // found in menu
       return (foodid) => {
         return state.menu.map((item) => item.items).flat().find((item) => item.id === foodid);
+      }
+    },
+    findCart(state) {
+      // found in cart
+      return (foodid) => {
+        return state.cart.find((item) => item.id === foodid)?.count;
       }
     },
     foodCount(state) {

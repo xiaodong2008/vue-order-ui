@@ -24,13 +24,13 @@
       <a-list-item v-for="item in getAllFood()" :key="item.id">
         <a-list-item-meta :title="item.name">
           <template #description>
-            <span style="color: red">HKD {{ calcPrice(item) }}</span>
-            <span style="color: gray" v-for="custom in item.custom" :key="custom.id">
-              {{ custom.name }}: {{ custom.name }}
+            <span style="color: red;display: block">HKD {{ calcPrice(item) }}</span>
+            <span style="color: gray;display: block" v-for="custom in item.custom" :key="custom.id">
+               - {{ custom.name }}
             </span>
           </template>
           <template #avatar v-if="item.img">
-            <img :src="item.img" alt="img" class="foodImage">
+            <a-image :src="item.img" alt="img" class="foodImage" />
           </template>
         </a-list-item-meta>
         <a-space>
@@ -39,8 +39,8 @@
               <MinusOutlined style="font-size: 11px"/>
             </template>
           </a-button>
-          <a-button type="primary" @click="viewFood(item.id)" shape="round">
-            {{ item.count > 0 ? item.count : "加入購物車" }}
+          <a-button type="primary" @click="$store.commit('removeFood', [item.id])" danger shape="round">
+            从购物车中移除
           </a-button>
         </a-space>
       </a-list-item>
@@ -63,14 +63,18 @@ export default {
     getAllFood() {
       // get cart
       let cart = this.$store.state.cart;
+      console.log("cart",cart);
       let foodList = []
       cart.forEach((item) => {
+        let key = 0
         // for item.count
         for (let i = 0; i < item.count; i++) {
           let newItem = JSON.parse(JSON.stringify(item));
           newItem.count = undefined;
           newItem.custom = item.custom[i];
+          newItem.key = key;
           foodList.push(newItem);
+          key++;
         }
       })
       return foodList;
@@ -93,9 +97,10 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 #orderList {
   padding: 5px 10px;
+  margin-bottom: 100px;
 
   .title {
     font-size: 20px;

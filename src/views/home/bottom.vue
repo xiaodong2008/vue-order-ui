@@ -28,6 +28,7 @@ export default {
   background-color: var(--theme-color);
   color: var(--theme-color-text);
   padding: 20px;
+  z-index: 10;
 
   .count {
     height: 100%;
