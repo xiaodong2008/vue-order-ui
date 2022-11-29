@@ -1,6 +1,6 @@
 <template>
   <div id="menu">
-    <div class="block" v-for="list in $store.state.menu">
+    <div class="block" v-for="(list, key) in $store.state.menu" :id="`foodItem_${key+1}`">
       <span class="title">
         {{ list.name }}
       </span>
@@ -93,15 +93,23 @@ export default {
     viewFood(foodid) {
       this.view = true;
       this.viewTarget = this.$store.getters.findFood(foodid);
-      this.viewCustom = this.$store.getters.findType(foodid).superChild;
-      // deep copy
-      this.viewCustom = JSON.parse(JSON.stringify(this.viewCustom));
+      const childList = this.$store.getters.findType(foodid).superChild || [];
       // get all viewCustom[].items
-      this.viewCustom.forEach(type => {
+      this.viewCustom.child?.forEach(type => {
         type.items.forEach(item => {
-          item.checked = false;
+          item.checked = item.default || false;
         })
       });
+      // merge this.viewTarget.child and childList
+      // get all viewTarget.child
+      this.viewTarget.child?.forEach(type => {
+        childList.push(type);
+        type.items.forEach(item => {
+          item.checked = item.default || false;
+        })
+      })
+      // deep copy
+      this.viewCustom = JSON.parse(JSON.stringify(childList));
       console.log(this.viewCustom);
     },
     getPrice() {

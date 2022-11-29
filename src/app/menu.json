@@ -39,20 +39,45 @@
         },
         {
           "name": "加料",
-            "items": [
+          "items": [
+            {
+              "name": "加溏心蛋",
+              "price": 12
+            },
+            {
+              "name": "加豚骨",
+              "price": 14
+            },
+            {
+              "name": "加叉燒",
+              "price": 14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "小吃",
+      "items": [
+        {
+          "name": "日式炸豬排",
+          "img": "https://img.ltn.com.tw/Upload/food/page/2016/11/25/161125-4960-000-4WQJH.jpg",
+          "price": 24,
+          "child": [
+            {
+              "name": "口味",
+              "items": [
                 {
-                "name": "加溏心蛋",
-                "price": 12
+                  "name": "加辣",
+                  "price": 0
                 },
                 {
-                "name": "加豚骨",
-                "price": 14
-                },
-                {
-                "name": "加叉燒",
-                "price": 14
+                  "name": "芝士",
+                  "price": 1
                 }
-            ]
+              ]
+            }
+          ]
         }
       ]
     }

@@ -9,16 +9,13 @@
             <template #title>
               食物分類
             </template>
-            <a-menu-item key="1">
-              <span>拉麵</span>
-            </a-menu-item>
-            <a-menu-item key="2">
-              <span>小食</span>
-            </a-menu-item>
-            <a-menu-item key="3">
-              <span>飲品</span>
+            <a-menu-item v-for="(item, key) in $store.state.menu" :key="key + 1">
+              <router-link to="/" @click="scrollTo(key + 1)">{{ item.name }}</router-link>
             </a-menu-item>
           </a-sub-menu>
+          <a-menu-item key="4">
+            <router-link to="/checkout">購物車</router-link>
+          </a-menu-item>
         </a-menu>
       </a-drawer>
       <router-link to="/">
@@ -40,6 +37,7 @@
 
 <script>
 import {MenuUnfoldOutlined, ShoppingCartOutlined} from '@ant-design/icons-vue'
+import {selecter as $} from "fastjs-next"
 
 export default {
   name: "topbar",
@@ -49,9 +47,20 @@ export default {
       drawerVisible: false
     }
   },
+  mounted() {
+    console.log(this.$store);
+  },
   methods: {
     openDraw() {
       this.drawerVisible = !0
+    },
+    scrollTo(itemId) {
+      const targetTop = $(`#foodItem_${itemId}`).el().offsetTop
+      // smooth scroll
+      window.scrollTo({
+        top: targetTop - 50,
+        behavior: "smooth"
+      })
     }
   },
   components: {
