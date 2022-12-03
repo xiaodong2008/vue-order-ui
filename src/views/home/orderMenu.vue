@@ -135,7 +135,6 @@ export default {
 #menu {
   margin-top: 10px;
   display: block;
-  margin-bottom: 100px;
 
   .block {
     padding: 0 10px;

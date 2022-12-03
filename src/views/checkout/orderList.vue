@@ -20,30 +20,32 @@
         </template>
       </a-modal>
     </span>
-    <a-list class="itemList">
-      <a-list-item v-for="item in getAllFood()" :key="item.id">
-        <a-list-item-meta :title="item.name">
-          <template #description>
-            <span style="color: red;display: block">HKD {{ calcPrice(item) }}</span>
-            <span style="color: gray;display: block" v-for="custom in item.custom" :key="custom.id">
+    <a-list class="itemList" :pagination="{position: 'bottom', pageSize: 5, showQuickJumper: true, total: $store.getters.getAllFood.length}" :data-source="$store.getters.getAllFood">
+      <template #renderItem="{ item }">
+        <a-list-item>
+          <a-list-item-meta :title="item.name">
+            <template #description>
+              <span style="color: red;display: block">HKD {{ $store.getters.calcPrice(item) }}</span>
+              <span style="color: gray;display: block" v-for="custom in item.custom" :key="custom.id">
                - {{ custom.name }}
             </span>
-          </template>
-          <template #avatar v-if="item.img">
-            <a-image :src="item.img" alt="img" class="foodImage" />
-          </template>
-        </a-list-item-meta>
-        <a-space>
-          <a-button type="primary" v-if="item.count > 0" @click="$store.commit('removeFood', [item.id])" shape="circle">
-            <template #icon>
-              <MinusOutlined style="font-size: 11px"/>
             </template>
-          </a-button>
-          <a-button type="primary" @click="$store.commit('removeFood', [item.id])" danger shape="round">
-            从购物车中移除
-          </a-button>
-        </a-space>
-      </a-list-item>
+            <template #avatar v-if="item.img">
+              <a-image :src="item.img" alt="img" class="foodImage" />
+            </template>
+          </a-list-item-meta>
+          <a-space>
+            <a-button type="primary" v-if="item.count > 0" @click="$store.commit('removeFood', [item.id])" shape="circle">
+              <template #icon>
+                <MinusOutlined style="font-size: 11px"/>
+              </template>
+            </a-button>
+            <a-button type="primary" @click="$store.commit('removeFood', [item.id])" danger shape="round">
+              从购物车中移除
+            </a-button>
+          </a-space>
+        </a-list-item>
+      </template>
     </a-list>
   </div>
 </template>
@@ -60,33 +62,6 @@ export default {
     };
   },
   methods: {
-    getAllFood() {
-      // get cart
-      let cart = this.$store.state.cart;
-      console.log("cart",cart);
-      let foodList = []
-      cart.forEach((item) => {
-        let key = 0
-        // for item.count
-        for (let i = 0; i < item.count; i++) {
-          let newItem = JSON.parse(JSON.stringify(item));
-          newItem.count = undefined;
-          newItem.custom = item.custom[i];
-          newItem.key = key;
-          foodList.push(newItem);
-          key++;
-        }
-      })
-      return foodList;
-    },
-    calcPrice(item) {
-      console.log(item);
-      let price = item.price;
-      item.custom.forEach((item) => {
-        price += item.price;
-      })
-      return price;
-    },
     cleanCart() {
       this.$store.commit('cleanCart');
       this.cleanCartConfirm = false;
@@ -100,7 +75,6 @@ export default {
 <style lang="less">
 #orderList {
   padding: 5px 10px;
-  margin-bottom: 100px;
 
   .title {
     font-size: 20px;

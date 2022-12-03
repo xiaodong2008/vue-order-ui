@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <orderMenu/>
+    <div class="fadeBottom"></div>
     <Bottom/>
   </div>
 </template>
@@ -15,4 +16,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.fadeBottom {
+  height: 100px;
+}
 </style>

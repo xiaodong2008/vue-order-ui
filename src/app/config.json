@@ -1,7 +1,12 @@
 {
   "shop": {
     "name": "枫叶日本料理",
-    "icon": null
+    "icon": null,
+    "payment": [
+      "微信支付",
+      "支付寶",
+      "Apple Pay"
+    ]
   },
   "localStorageName": "vue-order-ui"
 }

@@ -10,6 +10,9 @@ let id = 1
 menu.forEach(item => {
   item.items.forEach(item => {
     item.id = id++
+    if (!item.img.includes("http")) {
+      item.img = require("../app/img/" + item.img)
+    }
   })
 })
 
@@ -115,6 +118,35 @@ const store = createStore({
         })
       })
       return price;
+    },
+    getAllFood(state) {
+      // get cart
+      let cart = state.cart;
+      console.log("cart", cart);
+      let foodList = []
+      cart.forEach((item) => {
+        let key = 0
+        // for item.count
+        for (let i = 0; i < item.count; i++) {
+          let newItem = JSON.parse(JSON.stringify(item));
+          newItem.count = undefined;
+          newItem.custom = item.custom[i];
+          newItem.key = key;
+          foodList.push(newItem);
+          key++;
+        }
+      })
+      return foodList;
+    },
+    calcPrice() {
+      return (item) => {
+        console.log(item);
+        let price = item.price;
+        item.custom.forEach((item) => {
+          price += item.price;
+        })
+        return price;
+      }
     }
   },
   plugins: [listenCart]

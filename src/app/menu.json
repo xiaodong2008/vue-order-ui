@@ -17,6 +17,16 @@
           "name": "日式浓厚味增拉麵",
           "img": "https://pic.pimg.tw/dreamycat0421/1442848143-3966685655.jpg",
           "price": 35
+        },
+        {
+          "name": "日式经典鹽拉麵",
+          "img": "https://img.ltn.com.tw/Upload/food/page/2016/09/03/160903-3025-6-cNZZp.jpg",
+          "price": 35
+        },
+        {
+          "name": "日式醬油拉麵",
+          "img": "https://img.ltn.com.tw/Upload/food/page/2016/09/03/160903-3025-09-QRkrH.jpg",
+          "price": 32
         }
       ],
       "superChild": [
@@ -49,8 +59,71 @@
               "price": 14
             },
             {
-              "name": "加叉燒",
-              "price": 14
+              "name": "加筍乾",
+              "price": 8
+            },
+            {
+              "name": "加魚板",
+              "price": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "丼飯",
+      "items": [
+        {
+          "name": "極上海鮮丼",
+          "img": "https://resources.matcha-jp.com/archive_files/jp/2016/02/howto_donburi_20160205c-700x466.webp",
+          "price": 50
+        },
+        {
+          "name": "三文魚親子丼",
+          "img": "https://static5.orstatic.com/userphoto2/photo/W/PBW/0504K83FB77F3231EFA9DCpx.jpg",
+            "price": 40
+        },
+        {
+          "name": "天婦羅丼",
+          "img": "https://pic.pimg.tw/rfg73/1545795821-1693305912.jpg",
+          "price": 38
+        },
+        {
+          "name": "蒲燒鰻魚丼",
+          "img": "https://static6.orstatic.com/userphoto2/photo/1Y/1JR6/0B0HAP42014DA9E2BBF688px.jpg",
+          "price": 38
+        },
+        {
+          "name": "經典牛肉丼",
+          "img": "https://www.da-meat.com/upfile/image/8f1853ae2ed972747d86aa243103372fc6710cb5_b2.png",
+          "price": 36
+        },
+        {
+          "name": "炸豬排丼",
+          "img": "https://tokyo-kitchen.icook.network/uploads/recipe/cover/103831/2bb062368fd5c1ed.jpg",
+          "price": 36
+        },
+        {
+          "name": "開心親子丼",
+          "img": "https://resources.matcha-jp.com/archive_files/jp/2016/02/howto_donburi_20160205d-700x466.webp",
+          "price": 30
+        }
+      ],
+      "superChild": [
+        {
+          "name": "分量",
+          "items": [
+            {
+              "name": "加飯",
+              "price": 0
+            },
+            {
+              "name": "少飯",
+              "price": 0
+            },
+            {
+              "name": "轉壽司米",
+              "price": 3
             }
           ]
         }
@@ -78,6 +151,31 @@
               ]
             }
           ]
+        },
+        {
+          "name": "章鱼小丸子 (4粒)",
+          "img": "https://pic3.zhimg.com/80/v2-bd3d489ba30b88c002adc03489e75a76_1440w.webp",
+          "price": 18,
+          "child": [
+            {
+              "name": "分量",
+              "items": [
+                {
+                  "name": "加2粒",
+                  "price": 8
+                },
+                {
+                  "name": "加4粒",
+                  "price": 14
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "大阪烧",
+          "img": "https://image.cache.storm.mg/styles/smg-800x533-fp/s3/thumbnails/image/s_002a.jpg",
+          "price": 10
         }
       ]
     }
