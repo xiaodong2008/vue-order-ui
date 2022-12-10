@@ -11,7 +11,10 @@ import orderMenu from "./orderMenu.vue";
 import Bottom from "./bottom.vue";
 
 export default {
-  components: {Bottom, orderMenu}
+  components: {
+    Bottom,
+    orderMenu
+  }
 }
 </script>
 
