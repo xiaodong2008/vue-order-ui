@@ -48,18 +48,18 @@ const store = createStore({
       }
       message.success("已加入購物車")
       // === 彩蛋，可删除 ===
-      if (this.getters.getTotal > 1000) {
-        if (this.getters.getTotal > 1500) {
-          let output = ""
-          // for 1500-1400 / 100 round up
-          for (let i = 0; i < Math.ceil((this.getters.getTotal - 1500) / 100); i++) {
-            if (output.length < 20)
-              output += "6"
-          }
-          message.warn(output)
-        } else
-          message.warn("兄弟你们公司团建吗？")
-      }
+      // if (this.getters.getTotal > 1000) {
+      //   if (this.getters.getTotal > 1500) {
+      //     let output = ""
+      //     // for 1500-1400 / 100 round up
+      //     for (let i = 0; i < Math.ceil((this.getters.getTotal - 1500) / 100); i++) {
+      //       if (output.length < 20)
+      //         output += "6"
+      //     }
+      //     message.warn(output)
+      //   } else
+      //     message.warn("兄弟你们公司团建吗？")
+      // }
       // === 彩蛋，可删除 ===
     },
     removeFood(state, [foodid, key]) {

@@ -8,7 +8,7 @@
         購物車
       </div>
       <a-list class="itemList"
-              :pagination="{position: 'bottom', pageSize: 5, showQuickJumper: true, total: $store.getters.getAllFood.length}"
+              :pagination="{position: 'bottom', pageSize: 5, showSizeChanger: false, showQuickJumper: true, total: $store.getters.getAllFood.length}"
               :data-source="$store.getters.getAllFood">
         <template #renderItem="{ item }">
           <a-list-item>

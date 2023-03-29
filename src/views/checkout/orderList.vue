@@ -20,7 +20,7 @@
         </template>
       </a-modal>
     </span>
-    <a-list class="itemList" :pagination="{position: 'bottom', pageSize: 5, showQuickJumper: true, total: $store.getters.getAllFood.length}" :data-source="$store.getters.getAllFood">
+    <a-list class="itemList" :pagination="{position: 'bottom', pageSize: 5, showSizeChanger: false, showQuickJumper: true, total: $store.getters.getAllFood.length}" :data-source="$store.getters.getAllFood">
       <template #renderItem="{ item }">
         <a-list-item>
           <a-list-item-meta :title="item.name">
