@@ -4,7 +4,8 @@ import {message} from "ant-design-vue";
 // plugin
 import {listenCart} from "./plugin.js";
 
-let menu = require("../app/menu.json").menu
+import menu from "../app/menu.json"
+
 // give id
 let id = 1
 menu.forEach(item => {
